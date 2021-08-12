@@ -20,7 +20,7 @@ The function should:
 */
 
 function createMenuItem(name, price, category) {
-  return { name: name, price: price, category: category };
+  return { name, price, category };
 }
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 1b: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -54,8 +54,9 @@ const burger = {
   price: 18,
   category: 'Lunch',
   discount: function (string) {
-    if (string === 'teacher' || string === 'student') return this.price * 0.75;
-    else return this.price * 0.9;
+    return string === 'teacher' || string === 'student'
+      ? this.price * 0.75
+      : this.price * 0.9;
   },
 };
 
@@ -125,12 +126,7 @@ Write a function that creates an object with name, rating, feedback, add the new
 */
 
 function addReview(arr, name, rating, feedback) {
-  const obj = {
-    name: name,
-    rating: rating,
-    feedback: feedback,
-  };
-  arr.push(obj);
+  arr.push({ name, rating, feedback });
   return arr;
 }
 
@@ -182,9 +178,9 @@ Use the getReviewsByRating function below to do the following:
 */
 
 function getReviewByRating(arr, rating) {
-  // return arr.filter(obj=>{
-  //   return obj.rating >= rating && obj.rating < rating + 1
+  return arr.filter((obj) => obj.rating >= rating && obj.rating < rating + 1);
 }
+// console.log('stretch 1', getReviewByRating(reviews, 4));
 
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪💪💪💪💪   
 Use the getLongReviews function below to do the following:
@@ -204,6 +200,8 @@ function getLongReviews(arr) {
     return obj.feedback.split(' ').length >= 15;
   });
 }
+
+// console.log('stretch 2', getLongReviews(reviews));
 
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 3: 💪💪💪💪💪💪💪💪💪💪 
 This stretch goal does not use the reviews data!  You create your own object in this stretch goal.
